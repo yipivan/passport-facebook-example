@@ -5,7 +5,7 @@ const setupPassport = require('./passport');
 const bodyParser = require('body-parser');
 const router = require('./router')(express);
 const port = process.env.PORT || 8080;
-require('dotenv').config();
+
 
 app.use(session({
     secret: 'supersecret'
