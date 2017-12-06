@@ -11,5 +11,15 @@ module.exports = (server)=>{
     const socketSession = socketIOSession(session.settings); 
     
     io.use(socketSession.parser);
+    io.use((socket, next)=>{
+        if(!socket.session.passport){
+            socket.disconnect();
+        }else{
+            next();
+        }
+    });
+    io.on('connection',(socket)=>{
+        socket.emit('username',socket.session.passport.user);
+    });
     return io;
 }

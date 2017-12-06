@@ -37,7 +37,9 @@ module.exports = (express) => {
 
     router.get('/logout',(req,res)=>{
         req.logout();
-        res.redirect("/")
+        req.session.destroy((err)=>{
+            res.redirect('/'); //Inside a callback… bulletproof!
+        });
     });
 
     return router;
