@@ -1,4 +1,5 @@
 const passport = require('passport');
+const path = require('path');
 
 module.exports = (express) => {
     const router = express.Router();
@@ -13,7 +14,7 @@ module.exports = (express) => {
 
 
     router.get('/secret',  isLoggedIn, (req, res) => {
-        res.sendFile(__dirname+ '/secret.html');
+        res.sendFile(path.join(__dirname, 'views', 'secret.html'));
     });
 
     router.get('/auth/facebook', passport.authenticate('facebook',{ 
@@ -31,7 +32,7 @@ module.exports = (express) => {
     });
 
     router.get('/', (req, res) => {
-        res.sendFile(__dirname + '/index.html');
+        res.sendFile(path.join(__dirname,'views','/index.html'));
     });
 
     router.get('/logout',(req,res)=>{

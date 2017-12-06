@@ -17,10 +17,13 @@
   },
   "homepage": "https://github.com/acceleratehk/passport-facebook-example#readme",
   "dependencies": {
+    "connect-redis": "^3.3.2",
     "dotenv": "^4.0.0",
     "express": "^4.16.2",
     "express-session": "^1.15.6",
     "passport": "^0.4.0",
-    "passport-facebook": "^2.1.1"
+    "passport-facebook": "^2.1.1",
+    "socket.io": "^2.0.4",
+    "socket.io.session": "^1.0.13"
   }
 }

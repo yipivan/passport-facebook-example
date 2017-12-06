@@ -1,15 +1,16 @@
 const express = require('express');
-const app = express();
-const session = require('express-session');
-const setupPassport = require('./passport');
+const expressSession = require('express-session');
 const bodyParser = require('body-parser');
+const app = express();
+const server = require('http').Server(app);
+const setupPassport = require('./passport');
+const session = require('./session')
+const io = require('./socket')(server);
 const router = require('./router')(express);
 const port = process.env.PORT || 8080;
 
 
-app.use(session({
-    secret: 'supersecret'
-}));
+app.use(expressSession(session.settings));
 
 app.use(bodyParser());
 
@@ -17,5 +18,5 @@ setupPassport(app);
 
 app.use('/', router);
 
-app.listen(port);
+server.listen(port);
 console.log('listening on port ', port);
